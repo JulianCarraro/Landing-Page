@@ -1,34 +1,35 @@
+import { NavLink } from 'react-router';
 import CartWidget from './CartWidget'
+import { useEffect, useState } from 'react';
+import { NavDropdown } from 'react-bootstrap';
 
-function NavBar() {
+function NavBar({ categories }) {
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div className="container-fluid">
-                <div className="d-flex" style={{ gap: 20 }}>
-                    <img src="src\assets\logoapp.png" style={{ width: 50, height: 50 }}></img>
-                    {/* <a className="navbar-brand d-flex" href="#" style={{ alignItems: "center" }}>OFFSIDE SPORTS</a> */}
-                </div>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav mx-auto">
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Categoria 1</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Categoria 2</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Categoria 3</a>
-                        </li>
-                    </ul>
+            <div className="container-fluid d-flex justify-content-between align-items-center">
 
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <CartWidget />
-                        </li>
-                    </ul>
+                { }
+                <div className="d-flex align-items-center" style={{ gap: 20 }}>
+                    <img src="src/assets/logoapp.png" alt="logo" style={{ width: 50, height: 50 }} />
+
+                    <NavDropdown title="categorias" id="basic-nav-dropdown" style={{color: "white"}}>
+                        {categories.map(category => (
+                            <NavDropdown.Item
+                                as={NavLink}
+                                to={`/category/${category}`}
+                                key={category}
+                            >
+                                {category}
+                            </NavDropdown.Item>
+
+                        ))}
+                    </NavDropdown>
+                </div>
+
+                { }
+                <div>
+                    <CartWidget />
                 </div>
             </div>
         </nav>
