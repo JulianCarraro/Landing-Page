@@ -1,6 +1,6 @@
 import CartWidget from './CartWidget'
 import { useEffect, useState } from 'react';
-import NavBar from './navBar';
+import NavBar from './NavBar'
 
 function NavBarContainer() {
 
