@@ -1,20 +1,22 @@
 import CartWidget from './CartWidget'
 import { useEffect, useState } from 'react';
 import NavBar from './NavBar'
+import { getCollectionData } from "../firebase/db";
 
 function NavBarContainer() {
 
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetch('https://dummyjson.com/products/category-list')
-            .then(res => res.json())
-            .then(data => setCategories(data))
-            .then(console.log);
+        getCollectionData("categories").then(categories => {
+            setCategories(categories);
+        }).catch(error => {
+            console.error("Error obteniendo categorias: ", error);
+        });
     }, [])
 
     return (
-       <NavBar categories = {categories}/>
+        <NavBar categories={categories} />
     )
 }
 

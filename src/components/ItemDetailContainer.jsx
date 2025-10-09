@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Card, Button, Container, Row, Col, Spinner } from "react-bootstrap";
 import ItemDetail from "./ItemDetail"
 import { withLoading } from '../hoc/withLoading';
+import { getItem } from '../firebase/db';
 
 const ItemDetailWithLoading = withLoading(ItemDetail);
 
@@ -12,16 +13,13 @@ function ItemDetailContainer() {
     const { id } = useParams();
 
     useEffect(() => {
-        fetch(`https://dummyjson.com/products/${id}`)
-            .then((res) => res.json())
+        getItem(id)
             .then((data) => {
                 setItem(data);
-                console.log("Producto recibido:", data);
             });
     }, [id]);
 
     return (
-        // <ItemDetail item={item}></ItemDetail>
         <ItemDetailWithLoading item={item} />
     )
 }
