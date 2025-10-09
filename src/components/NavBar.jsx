@@ -2,6 +2,7 @@ import { NavLink } from 'react-router';
 import CartWidget from './CartWidget'
 import { useEffect, useState } from 'react';
 import { NavDropdown } from 'react-bootstrap';
+import logo from "../assets/logoapp.png";
 
 function NavBar({ categories }) {
 
@@ -10,9 +11,15 @@ function NavBar({ categories }) {
             <div className="container-fluid d-flex justify-content-between align-items-center">
 
                 <div className="d-flex align-items-center" style={{ gap: 20 }}>
-                    <img src="src/assets/logoapp.png" alt="logo" style={{ width: 50, height: 50 }} />
+                    <NavLink to="/" style={{ textDecoration: "none" }}>
+                        <img
+                            src={logo}
+                            alt="logo"
+                            style={{ width: 50, height: 50, cursor: "pointer" }}
+                        />
+                    </NavLink>
 
-                    <NavDropdown title="categorias" id="basic-nav-dropdown" style={{color: "white"}}>
+                    <NavDropdown title="categorias" id="basic-nav-dropdown" style={{ color: "white" }}>
                         {categories.map(category => (
                             <NavDropdown.Item
                                 as={NavLink}
